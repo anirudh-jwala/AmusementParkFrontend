@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4">
+      <p>branding goes here!</p>
+    </div>
+    <div class="col-8">
+      <div class="shadow p-5 mb-5 bg-white rounded text-center">
+        <h4 class="mb-4">Welcome to Amusement Park</h4>
+        <form>
+          <div class="form-group">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter username</mat-label>
+              <input matInput placeholder="amit" type="text" />
+              <mat-icon matPrefix>person_outline</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter password</mat-label>
+              <input matInput placeholder="123456" type="password" />
+              <mat-icon matPrefix>lock_outline</mat-icon>
+            </mat-form-field>
+            <button mat-flat-button color="accent">Login</button>
+          </div>
+        </form>
+        Are you new here? <a [routerLink]="['/register']">Register now</a>
+      </div>
+    </div>
+  </div>
+</div>

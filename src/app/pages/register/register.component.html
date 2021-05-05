@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4">
+      <p>branding goes here!</p>
+    </div>
+    <div class="col-8">
+      <div class="shadow p-5 mb-5 bg-white rounded text-center">
+        <h4 class="mb-4">Welcome to Amusement Park</h4>
+        <form>
+          <div class="form-group">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter username</mat-label>
+              <input matInput placeholder="amit" type="text" />
+              <mat-icon matPrefix>person_outline</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter email</mat-label>
+              <input matInput placeholder="example@gmail.com" type="email" />
+              <mat-icon matPrefix>mail_outline</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter password</mat-label>
+              <input matInput placeholder="123456" type="password" />
+              <mat-icon matPrefix>lock_outline</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter phone number</mat-label>
+              <input matInput placeholder="999 999 9999" type="tel" />
+              <mat-icon matPrefix>smartphone</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter address</mat-label>
+              <input matInput placeholder="Hyderabad, Telangana" type="text" />
+              <mat-icon matPrefix>location_on</mat-icon>
+            </mat-form-field>
+            <button mat-flat-button color="accent">Register</button>
+          </div>
+        </form>
+        Already have an account? <a [routerLink]="['/login']">Login now</a>
+      </div>
+    </div>
+  </div>
+</div>
