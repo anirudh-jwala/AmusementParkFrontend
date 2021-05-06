@@ -2,16 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'user',
+    component: UserDashboardComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
   },
   {
     path: 'activities',

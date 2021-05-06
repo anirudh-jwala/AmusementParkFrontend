@@ -21,6 +21,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { MdbModule } from 'mdb-angular-ui-kit';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,8 @@ import { MdbModule } from 'mdb-angular-ui-kit';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    UserDashboardComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,8 @@ import { MdbModule } from 'mdb-angular-ui-kit';
     MatInputModule,
     MatFormFieldModule,
     MdbModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
