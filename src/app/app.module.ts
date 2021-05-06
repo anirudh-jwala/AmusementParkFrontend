@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
@@ -49,7 +50,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     MdbModule,
-
+    MatTabsModule,
     HttpClientModule,
     FormsModule,
   ],
