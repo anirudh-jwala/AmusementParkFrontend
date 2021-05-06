@@ -3,14 +3,24 @@
     <mat-icon>attractions</mat-icon>
     Amusement Park
   </button>
+  <button mat-button [routerLink]="['/admin']" *ngIf="showAdminBoard">
+    Admin Dashboard
+  </button>
+  <button mat-button [routerLink]="['/user']" *ngIf="isLoggedIn">
+    User Dashboard
+  </button>
   <button mat-button [routerLink]="['/activities']">Activities</button>
   <button mat-button [routerLink]="['/gallery']">Gallery</button>
   <button mat-button [routerLink]="['/about-us']">About Us</button>
   <button mat-button [routerLink]="['/contact-us']">Contact Us</button>
   <span class="example-spacer"></span>
-  <button mat-button [routerLink]="['/login']">
+  <button mat-button [routerLink]="['/login']" *ngIf="!isLoggedIn">
     <mat-icon>login</mat-icon>
     Login/ Signup
+  </button>
+  <button mat-button *ngIf="isLoggedIn" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
   </button>
 </mat-toolbar>
 
