@@ -4,10 +4,12 @@
       <img src="/assets/login.png" class="img-fluid" />
     </div>
     <div class="col-8">
-      <div class="shadow p-5 mb-5 bg-white rounded text-center">
+      <div
+        class="shadow p-5 mb-5 bg-white rounded text-center"
+        *ngIf="!isLoggedIn"
+      >
         <h4 class="mb-4">Welcome to Amusement Park</h4>
         <form
-          *ngIf="!isLoggedIn"
           name="form"
           (ngSubmit)="f.form.valid && onSubmit()"
           #f="ngForm"
@@ -79,7 +81,7 @@
         Are you new here? <a [routerLink]="['/register']">Register now</a>
       </div>
       <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in successfully!
+        Logged in successfully! Go to <a [routerLink]="['/user']">User dashboard</a>
       </div>
     </div>
   </div>

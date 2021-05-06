@@ -94,10 +94,11 @@ export class ActivitiesComponent implements OnInit {
         priceDetails: '30 min',
       },
       {
-        imageUrl: 'https://fundore.com/assets/uploads/entertainment/Rappelling.jpg',
+        imageUrl:
+          'https://fundore.com/assets/uploads/entertainment/Rappelling.jpg',
         name: 'RAPPELLING',
         description:
-          "Are you ready for the heart-stopping action of rope for rappelling? Challenge yourself and conquer your fear with our rappelling rope set up with five point safety measures.",
+          'Are you ready for the heart-stopping action of rope for rappelling? Challenge yourself and conquer your fear with our rappelling rope set up with five point safety measures.',
         price: '100',
         priceDetails: '1 time',
       },
