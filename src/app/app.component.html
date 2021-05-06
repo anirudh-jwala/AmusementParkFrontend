@@ -1,22 +1,22 @@
 <mat-toolbar class="mat-elevation-z8" color="primary">
   <button mat-button [routerLink]="['/']">
     <mat-icon>attractions</mat-icon>
-    Amusement Park
+    <b style="font-size: 25px;">Amusement Park</b>
   </button>
 
-  <button mat-button [routerLink]="['/activities']">Activities</button>
-  <button mat-button [routerLink]="['/gallery']">Gallery</button>
-  <button mat-button [routerLink]="['/about-us']">About Us</button>
-  <button mat-button [routerLink]="['/contact-us']">Contact Us</button>
+  <button mat-button [routerLink]="['/activities']" routerLinkActive="active">Activities</button>
+  <button mat-button [routerLink]="['/gallery']" routerLinkActive="active">Gallery</button>
+  <button mat-button [routerLink]="['/about-us']" routerLinkActive="active">About Us</button>
+  <button mat-button [routerLink]="['/contact-us']" routerLinkActive="active">Contact Us</button>
   <span class="example-spacer"></span>
-  <button mat-button [routerLink]="['/admin']" *ngIf="showAdminBoard">
+  <button mat-button [routerLink]="['/admin']" routerLinkActive="active" *ngIf="showAdminBoard">
     Admin Dashboard
   </button>
-  <button mat-button [routerLink]="['/user']" *ngIf="isLoggedIn">
+  <button mat-button [routerLink]="['/user']" routerLinkActive="active" *ngIf="isLoggedIn">
     {{ username | titlecase }}
   </button>
-  <button mat-button [routerLink]="['/login']" *ngIf="!isLoggedIn">
-    <mat-icon>login</mat-icon>
+  <button mat-button [routerLink]="['/login']" routerLinkActive="active" *ngIf="!isLoggedIn">
+    <mat-icon>person_pin</mat-icon>
     Login/ Signup
   </button>
   <button mat-button *ngIf="isLoggedIn" (click)="logout()">
