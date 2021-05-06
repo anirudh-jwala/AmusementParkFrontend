@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-us',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
+  name:String;
+  email:string;
+  message : String;
   constructor() { }
 
   ngOnInit(): void {

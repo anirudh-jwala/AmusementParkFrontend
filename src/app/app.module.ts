@@ -26,6 +26,8 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MdbModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
