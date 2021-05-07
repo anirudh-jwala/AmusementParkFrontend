@@ -22,10 +22,7 @@ export class ActivitiesComponent implements OnInit {
     });
   }
 
-  addToCart(activityId: number) {
-    console.log('Selected ID: ' + activityId);
-    console.log(
-      'Selected ITEM: ' + this.activities[activityId - 1].activityName
-    );
+  addToCart(activityId: number): void {
+    console.log('Selected: ' + activityId);
   }
 }
