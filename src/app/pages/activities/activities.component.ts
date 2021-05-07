@@ -9,6 +9,7 @@ import { ActivityService } from 'src/app/services/activity.service';
 })
 export class ActivitiesComponent implements OnInit {
   activities: Activity[];
+  cart = [];
 
   constructor(private activityService: ActivityService) {}
 
@@ -24,5 +25,10 @@ export class ActivitiesComponent implements OnInit {
 
   addToCart(activityId: number): void {
     console.log('Selected: ' + activityId);
+
+    if (!this.cart.includes(activityId)) {
+      this.cart.push(this.activities[activityId - 1]);
+      window.localStorage.setItem('cartItem', JSON.stringify(this.cart));
+    }
   }
 }
