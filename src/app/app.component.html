@@ -19,27 +19,28 @@
   <span class="example-spacer"></span>
   <button
     mat-button
-    [routerLink]="['/cart']"
-    routerLinkActive="active"
-    *ngIf="isLoggedIn"
-  >
-    Cart
-  </button>
-  <button
-    mat-button
     [routerLink]="['/admin']"
     routerLinkActive="active"
     *ngIf="showAdminBoard"
   >
-    Admin Dashboard
+    Dashboard
   </button>
   <button
     mat-button
     [routerLink]="['/user']"
     routerLinkActive="active"
-    *ngIf="isLoggedIn"
+    *ngIf="isLoggedIn && !showAdminBoard"
   >
     {{ username | titlecase }}
+  </button>
+  <button
+    mat-button
+    [routerLink]="['/cart']"
+    routerLinkActive="active"
+    *ngIf="isLoggedIn && !showAdminBoard"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+    Cart
   </button>
   <button
     mat-button
