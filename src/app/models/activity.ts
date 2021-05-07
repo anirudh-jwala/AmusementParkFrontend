@@ -3,4 +3,6 @@ export interface Activity {
   activityName: string;
   description: string;
   charges: number;
+  imageUrl: string;
+  chargeDetails: string;
 }
