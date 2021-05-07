@@ -58,7 +58,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-MatPaginatorModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
