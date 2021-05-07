@@ -1,25 +1,53 @@
 <mat-toolbar class="mat-elevation-z8" color="primary">
   <button mat-button [routerLink]="['/']">
     <mat-icon>attractions</mat-icon>
-    <b style="font-size: 25px;">Amusement Park</b>
+    <span style="font-size: 1.3rem">Amusement Park</span>
   </button>
 
-  <button mat-button [routerLink]="['/activities']" routerLinkActive="active">Activities</button>
-  <button mat-button [routerLink]="['/gallery']" routerLinkActive="active">Gallery</button>
-  <button mat-button [routerLink]="['/about-us']" routerLinkActive="active">About Us</button>
-  <button mat-button [routerLink]="['/contact-us']" routerLinkActive="active">Contact Us</button>
+  <button mat-button [routerLink]="['/activities']" routerLinkActive="active">
+    Activities
+  </button>
+  <button mat-button [routerLink]="['/gallery']" routerLinkActive="active">
+    Gallery
+  </button>
+  <button mat-button [routerLink]="['/about-us']" routerLinkActive="active">
+    About Us
+  </button>
+  <button mat-button [routerLink]="['/contact-us']" routerLinkActive="active">
+    Contact Us
+  </button>
   <span class="example-spacer"></span>
-  <button mat-button [routerLink]="['/admin']" routerLinkActive="active" *ngIf="showAdminBoard">
+  <button
+    mat-button
+    [routerLink]="['/admin']"
+    routerLinkActive="active"
+    *ngIf="showAdminBoard"
+  >
     Admin Dashboard
   </button>
-  <button mat-button [routerLink]="['/user']" routerLinkActive="active" *ngIf="isLoggedIn">
+  <button
+    mat-button
+    [routerLink]="['/user']"
+    routerLinkActive="active"
+    *ngIf="isLoggedIn"
+  >
     {{ username | titlecase }}
   </button>
-  <button mat-button [routerLink]="['/login']" routerLinkActive="active" *ngIf="!isLoggedIn">
+  <button
+    mat-button
+    [routerLink]="['/login']"
+    routerLinkActive="active"
+    *ngIf="!isLoggedIn"
+  >
     <mat-icon>person_pin</mat-icon>
     Login/ Signup
   </button>
-  <button mat-button *ngIf="isLoggedIn" (click)="logout()">
+  <button
+    mat-button
+    *ngIf="isLoggedIn"
+    routerLinkActive="active"
+    (click)="logout()"
+  >
     <mat-icon>logout</mat-icon>
     Logout
   </button>
@@ -69,12 +97,27 @@
           <li><button class="btn btn-secondary"><i class="fa fa-linkedin"></i>&nbsp;&nbsp;LinkedIn</button></li>
         </ul> -->
         <ul class="social-network social-circle">
-          
-          <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-          <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-         </ul>	
+          <li>
+            <a href="#" class="icoFacebook" title="Facebook"
+              ><i class="fa fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" class="icoInstagram" title="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" class="icoTwitter" title="Twitter"
+              ><i class="fa fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" class="icoLinkedin" title="Linkedin"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
