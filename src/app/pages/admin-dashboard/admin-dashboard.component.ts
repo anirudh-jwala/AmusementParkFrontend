@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Activity } from 'src/app/models/activity';
@@ -19,7 +19,7 @@ export class AdminDashboardComponent implements OnInit {
     'customer name',
     'email',
     'address',
-    'mobile number'
+    'mobile number',
   ];
   displayedActivityColumns: string[] = [
     'activity id',
@@ -39,7 +39,9 @@ export class AdminDashboardComponent implements OnInit {
   dataSourceCustomer = new MatTableDataSource<Customer>();
   dataSourceTicket = new MatTableDataSource<Ticket>();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('MatPaginator1') customerPaginator: MatPaginator;
+  @ViewChild('MatPaginator2') activityPaginator: MatPaginator;
+  @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
 
   constructor(
     private activityService: ActivityService,
@@ -54,23 +56,23 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadAllActivities() {
-    return this.activityService.GetAllActivities().subscribe((data: any) => {
+    this.activityService.GetAllActivities().subscribe((data: any) => {
       this.dataSourceActivity = new MatTableDataSource<Activity>(data);
-      this.dataSourceActivity.paginator = this.paginator;
+      this.dataSourceActivity.paginator = this.activityPaginator;
     });
   }
 
   loadAllCustomers() {
     return this.customerService.GetAllCustomers().subscribe((data: any) => {
       this.dataSourceCustomer = new MatTableDataSource<Customer>(data);
-      this.dataSourceCustomer.paginator = this.paginator;
+      this.dataSourceCustomer.paginator = this.customerPaginator;
     });
   }
 
   loadAllTickets() {
     return this.ticketService.GetAllTickets().subscribe((data: any) => {
       this.dataSourceTicket = new MatTableDataSource<Ticket>(data);
-      this.dataSourceTicket.paginator = this.paginator;
+      this.dataSourceTicket.paginator = this.ticketPaginator;
     });
   }
 }
