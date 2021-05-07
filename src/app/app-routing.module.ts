@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { CartComponent } from './pages/cart/cart.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path: 'cart',
+    component: CartComponent,
+  }
 ];
 
 @NgModule({

@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     HomeComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
