@@ -15,21 +15,27 @@
             <img src="{{ activity.imageUrl }}" class="img img-fluid rounded" />
           </div>
           <div class="col-md-5 col-xs-12 col-sm-12 col-lg-5">
-            <h3 class="mt-3">{{ activity.name }}</h3>
+            <h3 class="mt-3">{{ activity.activityName }}</h3>
             <hr />
             <p>
               {{ activity.description }}
             </p>
             <button mat-stroked-button color="primary">Know More</button>
             &nbsp;&nbsp;
-            <button mat-raised-button color="primary">Add to Cart</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="addToCart(activity.activityId)"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="col-md-2 col-xs-12 col-sm-12 col-lg-2">
             <h3 class="mt-3">Price</h3>
             <hr />
             <p class="p-2">
               <strong style="color: #3f51b5"
-                >₹{{ activity.price }} ({{ activity.priceDetails }})</strong
+                >₹{{ activity.charges }} ({{ activity.chargeDetails }})</strong
               >
               Per individual
             </p>
