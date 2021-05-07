@@ -26,6 +26,8 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { FormsModule } from '@angular/forms';
     MatTabsModule,
     HttpClientModule,
     FormsModule,
+    MatTableModule,
+MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
