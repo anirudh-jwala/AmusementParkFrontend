@@ -53,6 +53,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MdbModule,
     MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
     HttpClientModule,
     FormsModule,
     MatTableModule,
