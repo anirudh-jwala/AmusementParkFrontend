@@ -6,8 +6,8 @@
   background-color: #3f51b5 !important;
 }
 
-.active{
-  background: rgb(0, 102, 255);
+.active {
+  background: #5f6ec2;
 }
 
 ul.social-network {
@@ -22,32 +22,33 @@ ul.social-network li {
   margin: 0 5px;
 }
 
-
 /* footer social icons */
 
 .social-network a.icoFacebook:hover {
-  background-color: #3B5998;
+  background-color: #3b5998;
 }
 
 .social-network a.icoInstagram:hover {
   background-color: #dc4a38;
 }
 .social-network a.icoTwitter:hover {
-  background-color: #3B5998;
+  background-color: #3b5998;
 }
 
 .social-network a.icoLinkedin:hover {
   background-color: #007bb7;
 }
 
-.social-network a.icoFacebook:hover i,.social-network a.icoInstagram:hover i,.social-network a.icoTwitter:hover i,
+.social-network a.icoFacebook:hover i,
+.social-network a.icoInstagram:hover i,
+.social-network a.icoTwitter:hover i,
 .social-network a.icoLinkedin:hover i {
   color: #fff;
 }
 
 .social-network a.socialIcon:hover,
 .socialHoverClass {
-  color: #44BCDD;
+  color: #44bcdd;
 }
 
 .social-circle li a {
@@ -92,5 +93,5 @@ ul.social-network li {
 }
 
 .social-network a {
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
