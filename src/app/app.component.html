@@ -36,8 +36,7 @@
   <button
     mat-button
     [routerLink]="['/cart']"
-    routerLinkActive="active"
-    *ngIf="isLoggedIn && !showAdminBoard"
+    *ngIf="!showAdminBoard"
     matBadge="{{ noOfItemsInCart }}"
     matBadgePosition="center"
     matBadgeColor="accent"
@@ -45,12 +44,7 @@
     <mat-icon>shopping_cart</mat-icon>
     Cart
   </button>
-  <button
-    mat-button
-    [routerLink]="['/login']"
-    routerLinkActive="active"
-    *ngIf="!isLoggedIn"
-  >
+  <button mat-button [routerLink]="['/login']" *ngIf="!isLoggedIn">
     <mat-icon>person_pin</mat-icon>
     Login/ Signup
   </button>

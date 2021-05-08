@@ -44,4 +44,8 @@ export class AuthService {
       httpOptions
     );
   }
+
+  loggedIn(): boolean {
+    return sessionStorage.getItem('auth-token') != null;
+  }
 }

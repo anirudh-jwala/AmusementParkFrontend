@@ -33,6 +33,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
