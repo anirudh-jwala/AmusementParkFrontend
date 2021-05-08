@@ -14,12 +14,22 @@ export class CartService {
     this.itemsInCartSubject.subscribe((_) => (this.activities = _));
   }
 
+  getCartItems(): any {
+    const cartItems = window.sessionStorage.getItem('cartItems');
+
+    if (cartItems) {
+      return JSON.parse(cartItems);
+    } else {
+      return {};
+    }
+  }
+
   addToCart(activity) {
-    if (localStorage.getItem('cartItems')) {
-      this.activities = JSON.parse(localStorage.getItem('cartItems'));
+    if (sessionStorage.getItem('cartItems')) {
+      this.activities = JSON.parse(sessionStorage.getItem('cartItems'));
     }
     this.activities.push(activity);
-    localStorage.setItem('cartItems', JSON.stringify(this.activities));
+    sessionStorage.setItem('cartItems', JSON.stringify(this.activities));
 
     this.itemsInCartSubject.next([...this.activities, activity]);
   }

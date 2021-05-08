@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -37,6 +37,7 @@ export class AdminDashboardComponent implements OnInit {
     'bill',
     'activities',
   ];
+
   dataSourceActivity = new MatTableDataSource<Activity>();
   dataSourceCustomer = new MatTableDataSource<Customer>();
   dataSourceTicket = new MatTableDataSource<Ticket>();
@@ -44,8 +45,13 @@ export class AdminDashboardComponent implements OnInit {
   @ViewChild('MatPaginator1') customerPaginator: MatPaginator;
   @ViewChild('MatPaginator2') activityPaginator: MatPaginator;
   @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
-  result : boolean;
-  activity : Activity ;
+
+  result: boolean;
+  activity: Activity;
+
+  activityToSearch: string;
+  filteredActivities: Activity[];
+
   constructor(
     private activityService: ActivityService,
     private customerService: CustomerService,
@@ -80,61 +86,78 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   registrationform = new FormGroup({
-    //username : new FormControl('Amit'), //default value
-    activityId:new FormControl(),
-    activityName : new FormControl(),
-    description : new FormControl(),
-    charges : new FormControl(),
-    imageUrl : new FormControl(),
-    chargeDetails: new FormControl()
+    activityId: new FormControl(),
+    activityName: new FormControl(),
+    description: new FormControl(),
+    charges: new FormControl(),
+    imageUrl: new FormControl(),
+    chargeDetails: new FormControl(),
   });
 
-  onSubmit(){
-    console.log("Activity Added Successfully....!");
-    alert("Activity Added Successfully.....!");
+  onSubmit() {
+    console.log('Activity Added Successfully....!');
+    alert('Activity Added Successfully.....!');
     this.activityService.RegisterNewActivity(this.registrationform.value);
     location.reload();
   }
-  setClickedRow(id:number){
-    this.result  = confirm("Are you sure you want to delete these Records?");
-    if(this.result==true){
-      this.activityService.delete(id).subscribe((data:any)=>{
+
+  setClickedRow(id: number) {
+    this.result = confirm('Are you sure you want to delete these Records?');
+    if (this.result == true) {
+      this.activityService.delete(id).subscribe((data: any) => {
         this.ngOnInit();
-      })
+      });
     }
   }
 
-  activityupdateform=new FormGroup({  
-    activityId:new FormControl(),
-    activityName : new FormControl(),
-    description : new FormControl(),
-    charges : new FormControl(),
-    imageUrl : new FormControl(),
-    chargeDetails: new FormControl()
-    
-  });  
-  
-  update(activity:any){    
-      this.activityupdateform.patchValue({
-      activityId:activity.activityId,
-      activityName:activity.activityName,
-      description:activity.description,
-      charges:activity.charges,
-      imageUrl:activity.imageUrl,
-      chargeDetails:activity.chargeDetails
-      });   
+  activityupdateform = new FormGroup({
+    activityId: new FormControl(),
+    activityName: new FormControl(),
+    description: new FormControl(),
+    charges: new FormControl(),
+    imageUrl: new FormControl(),
+    chargeDetails: new FormControl(),
+  });
+
+  update(activity: any) {
+    this.activityupdateform.patchValue({
+      activityId: activity.activityId,
+      activityName: activity.activityName,
+      description: activity.description,
+      charges: activity.charges,
+      imageUrl: activity.imageUrl,
+      chargeDetails: activity.chargeDetails,
+    });
   }
 
-
-  onUpdate(){
-    console.log("Activity edited Successfully....!");
-    alert("Customer edited Successfully.....!");
+  onUpdate() {
+    console.log('Activity edited Successfully....!');
+    alert('Customer edited Successfully.....!');
     console.log(this.activityupdateform.value);
-    this.activityService.update(this.activityupdateform.value).subscribe(data=>{
-     // this.ngOnInit();
-    });
+    this.activityService
+      .update(this.activityupdateform.value)
+      .subscribe((data) => {
+        // this.ngOnInit();
+      });
 
     location.reload();
   }
-  
+
+  performFilterOnActivities() {
+    if (this.activityToSearch) {
+      this.filteredActivities = this.dataSourceActivity.data.filter(
+        (activity: Activity) => {
+          return activity.activityName
+            .toLocaleLowerCase()
+            .includes(this.activityToSearch);
+        }
+      );
+
+      this.dataSourceActivity = new MatTableDataSource<Activity>(
+        this.filteredActivities
+      );
+    } else {
+      this.loadAllActivities();
+    }
+  }
 }

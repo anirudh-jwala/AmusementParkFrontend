@@ -9,49 +9,50 @@ import { Activity } from '../models/activity';
   providedIn: 'root',
 })
 export class ActivityService {
-  // GET - for all activities
   remoteurl: string = 'http://localhost:8899/api/activity';
 
   constructor(private httpService: HttpClient) {}
 
-  // Get Remote activities
   GetAllActivities(): Observable<Activity> {
     return this.httpService
       .get<Activity>(this.remoteurl)
       .pipe(retry(1), catchError(this.myerrorhandler));
   }
-  // For adding new customer
+
+  // For adding new activity
   data: Object | undefined;
- 
-  //Http Post User
-  RegisterNewActivity(body:any): any{
-    console.log("inside RegisterNewUser() of RegistrationService");
-    const headers = { 
+
+  // Http Post User
+  RegisterNewActivity(body: any): any {
+    const headers = {
       'content-type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    }
-    this.httpService.post<any>(this.remoteurl,
-      JSON.stringify(body),{'headers':headers})
-    .subscribe((data: Object | undefined) => {
-      this.data = data;
-      //this.loading = false;
+      'Access-Control-Allow-Origin': '*',
+    };
+
+    this.httpService
+      .post<any>(this.remoteurl, JSON.stringify(body), { headers: headers })
+      .subscribe((data: Object | undefined) => {
+        this.data = data;
+      });
+  }
+
+  delete(activityId: number) {
+    window.location.reload();
+    return this.httpService.delete(
+      `http://localhost:8899/api/activity/${activityId}`
+    );
+  }
+
+  update(body: any): any {
+    const headers = {
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    };
+    return this.httpService.put('http://localhost:8899/api/activity', body, {
+      headers: headers,
     });
   }
 
-  delete(activityId :number){
-    // location.reload();
-    console.log("inside Deleteactivity() of DeleteActivityservice");
-    return this.httpService.delete("http://localhost:8899/api/activity/"+activityId);
-  }
-
-  update(body:any): any{
-    console.log("Inside service update()");
-    const headers = { 
-      'content-type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    }
-    return this.httpService.put("http://localhost:8899/api/activity",body,{'headers':headers});
-  }
   // Error handling
   myerrorhandler(error) {
     let errorMessage = '';
@@ -65,5 +66,4 @@ export class ActivityService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 }
