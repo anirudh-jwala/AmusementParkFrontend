@@ -20,7 +20,38 @@ export class ActivityService {
       .get<Activity>(this.remoteurl)
       .pipe(retry(1), catchError(this.myerrorhandler));
   }
+  // For adding new customer
+  data: Object | undefined;
+ 
+  //Http Post User
+  RegisterNewActivity(body:any): any{
+    console.log("inside RegisterNewUser() of RegistrationService");
+    const headers = { 
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+    this.httpService.post<any>(this.remoteurl,
+      JSON.stringify(body),{'headers':headers})
+    .subscribe((data: Object | undefined) => {
+      this.data = data;
+      //this.loading = false;
+    });
+  }
 
+  delete(activityId :number){
+    // location.reload();
+    console.log("inside Deleteactivity() of DeleteActivityservice");
+    return this.httpService.delete("http://localhost:8899/api/activity/"+activityId);
+  }
+
+  update(body:any): any{
+    console.log("Inside service update()");
+    const headers = { 
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+    return this.httpService.put("http://localhost:8899/api/activity",body,{'headers':headers});
+  }
   // Error handling
   myerrorhandler(error) {
     let errorMessage = '';
@@ -34,4 +65,5 @@ export class ActivityService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
 }
