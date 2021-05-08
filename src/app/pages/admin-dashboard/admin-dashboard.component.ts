@@ -79,6 +79,22 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  registrationform = new FormGroup({
+    //username : new FormControl('Amit'), //default value
+    activityId:new FormControl(),
+    activityName : new FormControl(),
+    description : new FormControl(),
+    charges : new FormControl(),
+    imageUrl : new FormControl(),
+    chargeDetails: new FormControl()
+  });
+
+  onSubmit(){
+    console.log("Activity Added Successfully....!");
+    alert("Activity Added Successfully.....!");
+    this.activityService.RegisterNewActivity(this.registrationform.value);
+    location.reload();
+  }
   setClickedRow(id:number){
     this.result  = confirm("Are you sure you want to delete these Records?");
     if(this.result==true){
@@ -120,4 +136,5 @@ export class AdminDashboardComponent implements OnInit {
 
     location.reload();
   }
+  
 }
