@@ -51,8 +51,10 @@ export class AdminDashboardComponent implements OnInit {
 
   activityToSearch: string;
   customerToSearch: string;
+  ticketToSearch: string;
   filteredActivities: Activity[];
   filteredCustomers: Customer[];
+  filteredTickets: Ticket[];
 
   constructor(
     private activityService: ActivityService,
@@ -178,6 +180,23 @@ export class AdminDashboardComponent implements OnInit {
       );
     } else {
       this.loadAllCustomers();
+    }
+  }
+
+  performFilterOnTickets() {
+    if (this.ticketToSearch) {
+      this.filteredTickets = this.dataSourceTicket.data.filter(
+        (ticket: Ticket) => {
+          return ticket.ticketId.toString()
+          .includes(this.ticketToSearch);
+        }
+      );
+
+      this.dataSourceTicket = new MatTableDataSource<Ticket>(
+        this.filteredTickets
+      );
+    } else {
+      this.loadAllTickets();
     }
   }
 }
