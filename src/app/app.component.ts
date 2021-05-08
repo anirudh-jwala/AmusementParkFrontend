@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from './services/cart.service';
 import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
@@ -13,10 +14,12 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  noOfItemsInCart: number;
 
   constructor(
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,10 @@ export class AppComponent {
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.username = user.username;
     }
+
+    this.cartService.itemsInCartSubject.subscribe((items) => {
+      this.noOfItemsInCart = items.length;
+    });
   }
 
   logout(): void {

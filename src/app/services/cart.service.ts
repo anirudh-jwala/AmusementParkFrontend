@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Activity } from './models/activity';
+import { Activity } from '../models/activity';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
-  // constructor() { }
-
-  activities: Activity[] = [];
+  activities: Activity[];
 
   itemsInCartSubject: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
- constructor() {
-    this.itemsInCartSubject.subscribe(_ => this.activities = _);
+
+  constructor() {
+    this.itemsInCartSubject.subscribe((_) => (this.activities = _));
   }
 
   addToCart(activity) {
-    console.log("Inside CartService addtoCart")
-    // this.activities.push(activity);
+    if (localStorage.getItem('cartItems')) {
+      this.activities = JSON.parse(localStorage.getItem('cartItems'));
+    }
+    this.activities.push(activity);
+    localStorage.setItem('cartItems', JSON.stringify(this.activities));
+
     this.itemsInCartSubject.next([...this.activities, activity]);
   }
 
   getActivities(): Observable<Activity[]> {
-    // return this.activities;
     return this.itemsInCartSubject;
   }
 
@@ -31,5 +32,4 @@ export class CartService {
     this.activities = [];
     return this.activities;
   }
-
 }

@@ -31,6 +31,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { CartComponent } from './pages/cart/cart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     UserDashboardComponent,
     AdminDashboardComponent,
     CartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     MatTableModule,
     MatSelectModule,
     MatPaginatorModule,
+    MatBadgeModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

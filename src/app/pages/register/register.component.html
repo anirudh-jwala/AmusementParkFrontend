@@ -78,8 +78,9 @@
                 name="password"
                 [(ngModel)]="form.password"
                 required
-                minlength="6"
+                minlength="8"
                 #password="ngModel"
+                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$]).{8,32}$"
               />
               <mat-icon matPrefix>lock_outline</mat-icon>
               <mat-hint
@@ -90,8 +91,9 @@
                   <div *ngIf="password.errors.required">
                     Password is required
                   </div>
-                  <div *ngIf="password.errors.minlength">
-                    Password must be at least 6 characters
+                  <div *ngIf="password.errors.pattern">
+                    Password should have at least 1 uppercase letter, 1
+                    lowercase letter and 1 number
                   </div>
                 </div></mat-hint
               >

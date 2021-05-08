@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CartService } from 'src/app/cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 import { Activity } from 'src/app/models/activity';
 import { ActivityService } from 'src/app/services/activity.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-activities',
@@ -14,8 +14,12 @@ export class ActivitiesComponent implements OnInit {
   activities: Activity[];
   cart = [];
 
-  constructor(private activityService: ActivityService,  private route: ActivatedRoute,
-    private cartService: CartService) {}
+  constructor(
+    private activityService: ActivityService,
+    private cartService: CartService,
+    private snakbarService: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadAllActivities();
@@ -28,16 +32,17 @@ export class ActivitiesComponent implements OnInit {
   }
 
   addToCart(activity: Activity) {
-    // console.log('Selected: ' + activityId);
-
-    // if (!this.cart.includes(activityId)) {
-    //   this.cart.push(this.activities[activityId - 1]);
-    //   window.localStorage.setItem('cartItem', JSON.stringify(this.cart));
-    // }
-
     this.cartService.addToCart(activity);
-    console.log('Selected: ' + activity);
-    window.alert('Your product has been added to the cart!');
 
+    let snakbarRef = this.snakbarService.open(
+      'Added item to cart',
+      'View cart',
+      {
+        duration: 5000,
+      }
+    );
+    snakbarRef.onAction().subscribe(() => {
+      this.router.navigateByUrl('/cart');
+    });
   }
 }

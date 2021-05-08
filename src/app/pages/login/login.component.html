@@ -20,21 +20,30 @@
               <mat-label>Enter username</mat-label>
               <input
                 matInput
-                placeholder="amit"
+                placeholder="Enter username"
                 type="text"
                 name="username"
                 [(ngModel)]="form.username"
                 required
+                minlength="3"
+                maxlength="20"
                 #username="ngModel"
               />
               <mat-icon matPrefix>person_outline</mat-icon>
               <mat-hint
                 ><div
                   class="alert-danger"
-                  role="alert"
                   *ngIf="username.errors && f.submitted"
                 >
-                  Username is required!
+                  <div *ngIf="username.errors.required">
+                    Username is required
+                  </div>
+                  <div *ngIf="username.errors.minlength">
+                    Username must be at least 3 characters
+                  </div>
+                  <div *ngIf="username.errors.maxlength">
+                    Username must be at most 20 characters
+                  </div>
                 </div></mat-hint
               >
             </mat-form-field>
@@ -47,8 +56,9 @@
                 name="password"
                 [(ngModel)]="form.password"
                 required
-                minlength="6"
+                minlength="8"
                 #password="ngModel"
+                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$]).{8,32}$"
               />
               <mat-icon matPrefix>lock_outline</mat-icon>
               <mat-hint>
@@ -60,8 +70,9 @@
                   <div *ngIf="password.errors.required">
                     Password is required
                   </div>
-                  <div *ngIf="password.errors.minlength">
-                    Password must be at least 6 characters
+                  <div *ngIf="password.errors.pattern">
+                    Password should have at least 1 uppercase letter, 1
+                    lowercase letter and 1 number
                   </div>
                 </div></mat-hint
               >
