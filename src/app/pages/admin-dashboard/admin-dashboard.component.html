@@ -119,9 +119,10 @@
                   padding-right: 10px;
                 "
               >
-                <button mat-stroked-button color="primary">
+                <!-- <button mat-stroked-button color="primary">
                   <mat-icon>edit</mat-icon>
-                </button>
+                </button> -->
+                <a href="#editActivityModal" (click)="update(element)" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
               </div>
             </td>
           </ng-container>
@@ -139,7 +140,7 @@
                   padding-right: 10px;
                 "
               >
-                <button mat-stroked-button color="warn">
+                <button mat-stroked-button color="warn" (click)="setClickedRow(element.activityId);">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -212,4 +213,45 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editActivityModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form [formGroup]="activityupdateform" (ngSubmit)="onUpdate()">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Activity</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<input type="hidden" formControlName="activityId">
+					<div class="form-group">
+						<label>Activity Name</label>
+						<input type="text" formControlName="activityName" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<input type="text" formControlName="description" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Charges</label>
+						<input type="text" formControlName="charges" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Image</label>
+						<textarea class="form-control" formControlName="imageUrl" required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Charges Details</label>
+						<input type="text" class="form-control" formControlName="chargeDetails" required>
+					</div>		
+								
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

@@ -25,7 +25,7 @@ import { MdbModule } from 'mdb-angular-ui-kit';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
@@ -65,6 +65,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     MatTableModule,
     MatSelectModule,
     MatPaginatorModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

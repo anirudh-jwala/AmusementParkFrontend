@@ -21,6 +21,20 @@ export class ActivityService {
       .pipe(retry(1), catchError(this.myerrorhandler));
   }
 
+  delete(activityId :number){
+    // location.reload();
+    console.log("inside Deleteactivity() of DeleteActivityservice");
+    return this.httpService.delete("http://localhost:8899/api/activity/"+activityId);
+  }
+
+  update(body:any): any{
+    console.log("Inside service update()");
+    const headers = { 
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+    return this.httpService.put("http://localhost:8899/api/activity",body,{'headers':headers});
+  }
   // Error handling
   myerrorhandler(error) {
     let errorMessage = '';
@@ -34,4 +48,5 @@ export class ActivityService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
 }

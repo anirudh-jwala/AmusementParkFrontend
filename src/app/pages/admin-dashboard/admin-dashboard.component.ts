@@ -1,4 +1,6 @@
 import { Component, OnInit, QueryList, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Activity } from 'src/app/models/activity';
@@ -42,7 +44,8 @@ export class AdminDashboardComponent implements OnInit {
   @ViewChild('MatPaginator1') customerPaginator: MatPaginator;
   @ViewChild('MatPaginator2') activityPaginator: MatPaginator;
   @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
-
+  result : boolean;
+  activity : Activity ;
   constructor(
     private activityService: ActivityService,
     private customerService: CustomerService,
@@ -74,5 +77,47 @@ export class AdminDashboardComponent implements OnInit {
       this.dataSourceTicket = new MatTableDataSource<Ticket>(data);
       this.dataSourceTicket.paginator = this.ticketPaginator;
     });
+  }
+
+  setClickedRow(id:number){
+    this.result  = confirm("Are you sure you want to delete these Records?");
+    if(this.result==true){
+      this.activityService.delete(id).subscribe((data:any)=>{
+        this.ngOnInit();
+      })
+    }
+  }
+
+  activityupdateform=new FormGroup({  
+    activityId:new FormControl(),
+    activityName : new FormControl(),
+    description : new FormControl(),
+    charges : new FormControl(),
+    imageUrl : new FormControl(),
+    chargeDetails: new FormControl()
+    
+  });  
+  
+  update(activity:any){    
+      this.activityupdateform.patchValue({
+      activityId:activity.activityId,
+      activityName:activity.activityName,
+      description:activity.description,
+      charges:activity.charges,
+      imageUrl:activity.imageUrl,
+      chargeDetails:activity.chargeDetails
+      });   
+  }
+
+
+  onUpdate(){
+    console.log("Activity edited Successfully....!");
+    alert("Customer edited Successfully.....!");
+    console.log(this.activityupdateform.value);
+    this.activityService.update(this.activityupdateform.value).subscribe(data=>{
+     // this.ngOnInit();
+    });
+
+    location.reload();
   }
 }
