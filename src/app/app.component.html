@@ -17,30 +17,14 @@
     Contact Us
   </button>
   <span class="example-spacer"></span>
-  <button
-    mat-button
-    [routerLink]="['/admin']"
-    routerLinkActive="active"
-    *ngIf="showAdminBoard"
-  >
+  <button mat-button [routerLink]="['/admin']" routerLinkActive="active" *ngIf="showAdminBoard">
     Dashboard
   </button>
-  <button
-    mat-button
-    [routerLink]="['/user']"
-    routerLinkActive="active"
-    *ngIf="isLoggedIn && !showAdminBoard"
-  >
-    {{ username | titlecase }}
-  </button>
-  <button
-    mat-button
-    [routerLink]="['/cart']"
-    *ngIf="!showAdminBoard"
-    matBadge="{{ noOfItemsInCart }}"
-    matBadgePosition="center"
-    matBadgeColor="accent"
-  >
+
+
+
+  <button mat-button [routerLink]="['/cart']" *ngIf="!showAdminBoard" matBadge="{{ noOfItemsInCart }}"
+    matBadgePosition="center" matBadgeColor="accent">
     <mat-icon>shopping_cart</mat-icon>
     Cart
   </button>
@@ -48,15 +32,24 @@
     <mat-icon>person_pin</mat-icon>
     Login/ Signup
   </button>
-  <button
-    mat-button
-    *ngIf="isLoggedIn"
-    routerLinkActive="active"
-    (click)="logout()"
-  >
-    <mat-icon>logout</mat-icon>
-    Logout
+
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn"> {{ username | titlecase }}
+    <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/user']" routerLinkActive="active" *ngIf="isLoggedIn && !showAdminBoard">
+      My Profile<!-- {{ username | titlecase }} -->
+    </button>
+
+    <button mat-menu-item [routerLink]="['/myorder']" routerLinkActive="active" *ngIf="isLoggedIn && !showAdminBoard">
+      My Orders
+    </button>
+    <button mat-button *ngIf="isLoggedIn" routerLinkActive="active" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+
 </mat-toolbar>
 
 <router-outlet> </router-outlet>
@@ -104,24 +97,16 @@
         </ul> -->
         <ul class="social-network social-circle">
           <li>
-            <a href="#" class="icoFacebook" title="Facebook"
-              ><i class="fa fa-facebook"></i
-            ></a>
+            <a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
           </li>
           <li>
-            <a href="#" class="icoInstagram" title="Instagram"
-              ><i class="fa fa-instagram"></i
-            ></a>
+            <a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a>
           </li>
           <li>
-            <a href="#" class="icoTwitter" title="Twitter"
-              ><i class="fa fa-twitter"></i
-            ></a>
+            <a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a>
           </li>
           <li>
-            <a href="#" class="icoLinkedin" title="Linkedin"
-              ><i class="fa fa-linkedin"></i
-            ></a>
+            <a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
           </li>
         </ul>
       </div>
