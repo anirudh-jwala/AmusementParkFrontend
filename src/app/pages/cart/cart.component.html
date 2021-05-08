@@ -16,28 +16,28 @@
                         <th> </th>
                     </tr>
                 </thead>
-                <tbody>
+                {{activities}}
+                <!-- <tbody *ngFor="let activity of activities">
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <div class="media-body">
-                                    <h4 class="media-heading">Activity Name</h4>
-                                    <h5 class="media-heading">Description</h5>
-                                </div>
+                                    <h4 class="media-heading">{{activity.activityName}}</h4>
+                                     <h5 class="media-heading">{{activity.description}}</h5> -->
+                                <!-- </div>
                             </div>
                         </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                             <input type="email" class="form-control" id="exampleInputEmail1" value="3">
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>₹4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>₹14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>₹{{activity.charges}}</strong></td>
                         <td class="col-sm-1 col-md-1">
                             <button type="button" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Remove
                             </button>
                         </td>
                     </tr>    
-                </tbody>
+                </tbody> -->
                 <tfoot>
                     <tr>
                         <td>   </td>
