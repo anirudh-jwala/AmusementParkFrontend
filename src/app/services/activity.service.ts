@@ -48,6 +48,7 @@ export class ActivityService {
       'content-type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     };
+    
     return this.httpService.put('http://localhost:8899/api/activity', body, {
       headers: headers,
     });

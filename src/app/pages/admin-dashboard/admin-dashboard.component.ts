@@ -50,7 +50,9 @@ export class AdminDashboardComponent implements OnInit {
   activity: Activity;
 
   activityToSearch: string;
+  customerToSearch: string;
   filteredActivities: Activity[];
+  filteredCustomers: Customer[];
 
   constructor(
     private activityService: ActivityService,
@@ -158,6 +160,24 @@ export class AdminDashboardComponent implements OnInit {
       );
     } else {
       this.loadAllActivities();
+    }
+  }
+
+  performFilterOnCustomers() {
+    if (this.customerToSearch) {
+      this.filteredCustomers = this.dataSourceCustomer.data.filter(
+        (customer: Customer) => {
+          return customer.username
+            .toLocaleLowerCase()
+            .includes(this.customerToSearch);
+        }
+      );
+
+      this.dataSourceCustomer = new MatTableDataSource<Customer>(
+        this.filteredCustomers
+      );
+    } else {
+      this.loadAllCustomers();
     }
   }
 }
