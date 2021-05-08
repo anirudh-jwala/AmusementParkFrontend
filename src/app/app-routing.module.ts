@@ -8,6 +8,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 
@@ -51,7 +52,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
-  }
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
