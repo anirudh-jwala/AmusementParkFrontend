@@ -54,7 +54,6 @@ export class CartService {
   }
 
   clearCart() {
-    this.activities = [];
-    return this.activities;
+    return this.itemsInCartSubject.next([]);
   }
 }

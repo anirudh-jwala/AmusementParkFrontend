@@ -16,7 +16,7 @@
       <table
         mat-table
         [dataSource]="shoppingCartItems"
-        class="mat-elevation-z8"
+        class="mat-elevation-z8 mt-5"
         *ngIf="shoppingCartItems.length > 0"
       >
         <ng-container matColumnDef="activity">
@@ -56,12 +56,27 @@
         <tr mat-row *matRowDef="let row; columns: displayedCartColumns"></tr>
       </table>
 
-      <!-- <div class="mt-5 container text-right" *ngIf="totalAmount != 0">
+      <div class="mt-5 container text-right" *ngIf="totalAmount != 0">
         <h2>
-          Total amount
+          Total amount &nbsp;
           <span class="price">{{ totalAmount | currency: "INR" }} /-</span>
         </h2>
-      </div> -->
+      </div>
+
+      <div class="col-md-8 mx-auto mt-5 mb-5" *ngIf="totalAmount != 0">
+        <button
+          mat-raised-button
+          color="primary"
+          autofocus
+          class="btn btn-success btn-lg btn-block"
+          style="font-size: 1.2rem; font-family: Roboto; padding: 12px"
+          (click)="orderNow()"
+        >
+          Order Now
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+
