@@ -17,14 +17,23 @@
     Contact Us
   </button>
   <span class="example-spacer"></span>
-  <button mat-button [routerLink]="['/admin']" routerLinkActive="active" *ngIf="showAdminBoard">
+  <button
+    mat-button
+    [routerLink]="['/admin']"
+    routerLinkActive="active"
+    *ngIf="showAdminBoard"
+  >
     Dashboard
   </button>
 
-
-
-  <button mat-button [routerLink]="['/cart']" *ngIf="!showAdminBoard" matBadge="{{ noOfItemsInCart }}"
-    matBadgePosition="center" matBadgeColor="accent">
+  <button
+    mat-button
+    [routerLink]="['/cart']"
+    *ngIf="!showAdminBoard"
+    matBadge="{{ noOfItemsInCart }}"
+    matBadgePosition="center"
+    matBadgeColor="accent"
+  >
     <mat-icon>shopping_cart</mat-icon>
     Cart
   </button>
@@ -33,23 +42,38 @@
     Login/ Signup
   </button>
 
-  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn"> {{ username | titlecase }}
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">
+    {{ username | titlecase }}
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item [routerLink]="['/user']" routerLinkActive="active" *ngIf="isLoggedIn && !showAdminBoard">
-      My Profile<!-- {{ username | titlecase }} -->
+    <button
+      mat-menu-item
+      [routerLink]="['/user']"
+      routerLinkActive="active"
+      *ngIf="isLoggedIn && !showAdminBoard"
+    >
+      My Profile
     </button>
 
-    <button mat-menu-item [routerLink]="['/myorder']" routerLinkActive="active" *ngIf="isLoggedIn && !showAdminBoard">
+    <button
+      mat-menu-item
+      [routerLink]="['/myorder']"
+      routerLinkActive="active"
+      *ngIf="isLoggedIn && !showAdminBoard"
+    >
       My Orders
     </button>
-    <button mat-button *ngIf="isLoggedIn" routerLinkActive="active" (click)="logout()">
+    <button
+      mat-button
+      *ngIf="isLoggedIn"
+      routerLinkActive="active"
+      (click)="logout()"
+    >
       <mat-icon>logout</mat-icon>
       Logout
     </button>
   </mat-menu>
-
 </mat-toolbar>
 
 <router-outlet> </router-outlet>
@@ -89,24 +113,26 @@
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase">Follow Us</h5>
 
-        <!-- <ul class="list-unstyled mb-0">
-          <li><button class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook</button></li>
-          <li><button class="btn btn-danger"><i class="fa fa-instagram"></i>&nbsp;&nbsp;Instagram</button></li>
-          <li><button class="btn btn-primary"><i class="fa fa-twitter"></i>&nbsp;&nbsp;Twitter</button></li>
-          <li><button class="btn btn-secondary"><i class="fa fa-linkedin"></i>&nbsp;&nbsp;LinkedIn</button></li>
-        </ul> -->
         <ul class="social-network social-circle">
           <li>
-            <a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="icoFacebook" title="Facebook"
+              ><i class="fa fa-facebook"></i
+            ></a>
           </li>
           <li>
-            <a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="icoInstagram" title="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
           </li>
           <li>
-            <a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="icoTwitter" title="Twitter"
+              ><i class="fa fa-twitter"></i
+            ></a>
           </li>
           <li>
-            <a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+            <a href="#" class="icoLinkedin" title="Linkedin"
+              ><i class="fa fa-linkedin"></i
+            ></a>
           </li>
         </ul>
       </div>

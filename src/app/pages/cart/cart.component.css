@@ -22,3 +22,26 @@
 table {
   width: 100%;
 }
+
+th {
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 12px;
+  text-align: center;
+}
+
+td {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.price {
+  padding: 8px 16px;
+  background-image: linear-gradient(
+    to right,
+    rgb(53, 48, 204),
+    rgb(188, 14, 173)
+  );
+  border-radius: 16px;
+  color: white;
+}

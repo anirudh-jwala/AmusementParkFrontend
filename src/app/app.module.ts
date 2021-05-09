@@ -35,7 +35,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthGuard } from './guards/auth.guard';
 import { UserorderComponent } from './pages/userorder/userorder.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatBadgeModule,
     MatSnackBarModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
