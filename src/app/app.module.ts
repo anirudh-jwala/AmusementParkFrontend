@@ -34,6 +34,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthGuard } from './guards/auth.guard';
+import { UserorderComponent } from './pages/userorder/userorder.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { AuthGuard } from './guards/auth.guard';
     AdminDashboardComponent,
     CartComponent,
     PageNotFoundComponent,
+    UserorderComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { AuthGuard } from './guards/auth.guard';
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatMenuModule,
     HttpClientModule,
     FormsModule,
     MatTableModule,

@@ -9,6 +9,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CustomerService {
+ 
+  
   // GET - for all activities
   remoteurl: string = 'http://localhost:8899/api/customer';
 
@@ -19,6 +21,33 @@ export class CustomerService {
     return this.httpService
       .get<Customer>(this.remoteurl)
       .pipe(retry(1), catchError(this.myerrorhandler));
+  }
+
+  GetCustomerById(customer:Customer): Observable<Customer> {
+    console.log("customer.customerId = "+customer.customerId);
+    return this.httpService
+      .get<Customer>('http://localhost:8899/api/customer/'+customer.customerId)
+      .pipe(retry(1), catchError(this.myerrorhandler));
+  }
+
+  getUserFromSession(): any {
+    const authuser = window.sessionStorage.getItem('auth-user');
+
+    if (authuser) {
+      return JSON.parse(authuser);
+    } else {
+      return {};
+    }
+  }
+
+
+  update(body:any): any{
+    console.log("Inside service update()");
+    const headers = { 
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+    return this.httpService.put("http://localhost:8899/api/customer",body,{'headers':headers});
   }
 
   // Error handling
