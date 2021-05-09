@@ -50,7 +50,7 @@
     <button
       mat-menu-item
       [routerLink]="['/user']"
-      routerLinkActive="active"
+      routerLinkActive="activeDropDown"
       *ngIf="isLoggedIn && !showAdminBoard"
     >
       My Profile
@@ -59,7 +59,7 @@
     <button
       mat-menu-item
       [routerLink]="['/myorder']"
-      routerLinkActive="active"
+      routerLinkActive="activeDropDown"
       *ngIf="isLoggedIn && !showAdminBoard"
     >
       My Orders
@@ -67,7 +67,7 @@
     <button
       mat-button
       *ngIf="isLoggedIn"
-      routerLinkActive="active"
+      routerLinkActive="activeDropDown"
       (click)="logout()"
     >
       <mat-icon>logout</mat-icon>

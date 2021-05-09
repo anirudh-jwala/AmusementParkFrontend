@@ -34,7 +34,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthGuard } from './guards/auth.guard';
-import { UserorderComponent } from './pages/userorder/userorder.component';
+import { UserorderComponent } from './pages/user-order/userorder.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 

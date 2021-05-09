@@ -20,6 +20,13 @@ export class TicketService {
       .pipe(retry(1), catchError(this.myerrorhandler));
   }
 
+  // Get Remote tickets by customer id
+  GetTicketsByCustomerId(customerId: number): Observable<Ticket> {
+    return this.httpService
+      .get<Ticket>(`${this.remoteurl}/${customerId}`)
+      .pipe(retry(1), catchError(this.myerrorhandler));
+  }
+
   // Error handling
   myerrorhandler(error) {
     let errorMessage = '';

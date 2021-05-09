@@ -3,30 +3,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Ticket } from 'src/app/models/ticket';
 import { TicketService } from 'src/app/services/ticket.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-userorder',
   templateUrl: './userorder.component.html',
-  styleUrls: ['./userorder.component.css']
+  styleUrls: ['./userorder.component.css'],
 })
 export class UserorderComponent implements OnInit {
-
-  displayedTicketColumns: string[] = [
-    'ticket id',
-    'date',
-    'bill'
-  ];
+  displayedTicketColumns: string[] = ['ticket id', 'date', 'bill'];
 
   dataSourceTicket = new MatTableDataSource<Ticket>();
 
   @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
 
-  
   ticketToSearch: number;
   filteredTickets: Ticket[];
 
   constructor(
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private tokenService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
@@ -34,19 +30,19 @@ export class UserorderComponent implements OnInit {
   }
 
   loadAllTickets() {
-    return this.ticketService.GetAllTickets().subscribe((data: any) => {
-      this.dataSourceTicket = new MatTableDataSource<Ticket>(data);
-      this.dataSourceTicket.paginator = this.ticketPaginator;
-    });
+    return this.ticketService
+      .GetTicketsByCustomerId(this.tokenService.getUser().id)
+      .subscribe((data: any) => {
+        this.dataSourceTicket = new MatTableDataSource<Ticket>(data);
+        this.dataSourceTicket.paginator = this.ticketPaginator;
+      });
   }
-
 
   performFilterOnTickets() {
     if (this.ticketToSearch) {
       this.filteredTickets = this.dataSourceTicket.data.filter(
         (ticket: Ticket) => {
-          return ticket.ticketId
-            .toString(this.ticketToSearch);
+          return ticket.ticketId.toString(this.ticketToSearch);
         }
       );
 
@@ -57,5 +53,4 @@ export class UserorderComponent implements OnInit {
       this.loadAllTickets();
     }
   }
-
 }
