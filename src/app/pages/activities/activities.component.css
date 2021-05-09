@@ -18,6 +18,7 @@
   transform: translate(-50%, -50%);
   color: white;
 }
+
 .fond {
   position: relative;
   background-color: white;
@@ -31,6 +32,7 @@
   overflow: hidden;
   position: relative;
 }
+
 .carreaux_presentation_light .shadow_swhow_mini {
   background-color: rgba(41, 58, 63, 0.4);
   position: absolute;
