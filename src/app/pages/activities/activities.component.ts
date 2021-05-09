@@ -32,17 +32,23 @@ export class ActivitiesComponent implements OnInit {
   }
 
   addToCart(activity: Activity) {
-    this.cartService.addToCart(activity);
+    let result: boolean = this.cartService.addToCartService(activity);
 
-    let snakbarRef = this.snakbarService.open(
-      'Added item to cart',
-      'View cart',
-      {
+    if (result) {
+      let snakbarRef = this.snakbarService.open(
+        'Added item to cart',
+        'View cart',
+        {
+          duration: 5000,
+        }
+      );
+      snakbarRef.onAction().subscribe(() => {
+        this.router.navigateByUrl('/cart');
+      });
+    } else {
+      this.snakbarService.open('Item already present in cart', '', {
         duration: 5000,
-      }
-    );
-    snakbarRef.onAction().subscribe(() => {
-      this.router.navigateByUrl('/cart');
-    });
+      });
+    }
   }
 }

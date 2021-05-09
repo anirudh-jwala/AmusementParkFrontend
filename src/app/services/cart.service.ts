@@ -24,14 +24,29 @@ export class CartService {
     }
   }
 
-  addToCart(activity) {
-    if (sessionStorage.getItem('cartItems')) {
-      this.activities = JSON.parse(sessionStorage.getItem('cartItems'));
+  addToCartService(activity: Activity): boolean {
+    if (this.activities.includes(activity)) {
+      console.log('Value already present');
+      return false;
+    } else {
+      this.itemsInCartSubject.next([...this.activities, activity]);
+      return true;
     }
-    this.activities.push(activity);
-    sessionStorage.setItem('cartItems', JSON.stringify(this.activities));
+  }
 
-    this.itemsInCartSubject.next([...this.activities, activity]);
+  removeFromCartService(activity: Activity): boolean {
+    if (this.activities.includes(activity)) {
+      let index = this.activities.indexOf(activity);
+      if (index > -1) {
+        this.activities.splice(index, 1);
+      }
+      this.itemsInCartSubject.next([...this.activities]);
+
+      return true;
+    } else {
+      console.log('Value not present');
+      return false;
+    }
   }
 
   getActivities(): Observable<Activity[]> {
