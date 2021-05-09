@@ -98,7 +98,7 @@
                 </div></mat-hint
               >
             </mat-form-field>
-            <!-- <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Enter phone number</mat-label>
               <input
                 matInput
@@ -141,12 +141,10 @@
                   class="alert-danger"
                   *ngIf="address.errors && f.submitted"
                 >
-                  <div *ngIf="address.errors.required">
-                    Mobile Number is required
-                  </div>
+                  <div *ngIf="address.errors.required">Address is required</div>
                 </div></mat-hint
               >
-            </mat-form-field> -->
+            </mat-form-field>
             <button mat-flat-button color="accent">Register</button>
           </div>
 
