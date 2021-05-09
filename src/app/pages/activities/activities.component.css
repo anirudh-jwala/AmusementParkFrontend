@@ -2,7 +2,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://www.rainbowresorts.in/images/activity_1.jpg");
 
-  height: 50%;
+  height: 40%;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -57,7 +57,7 @@
   left: -80%;
   color: #ffffff;
   font-weight: 300;
-  font-size: 13px;
+  font-size: 24px;
   width: 80%;
   -webkit-transition: all 0.7s;
   -moz-transition: all 0.7s;
@@ -91,4 +91,13 @@
 .carreaux_presentation_light:hover .deroul_soustitre {
   background-color: #417c74;
   right: 0px;
+}
+
+.close.mat-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  line-height: 14px;
+  min-width: auto;
 }

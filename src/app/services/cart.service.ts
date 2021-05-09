@@ -1,16 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Activity } from '../models/activity';
+import { Ticket } from '../models/ticket';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   activities: Activity[];
+  private remoteurl: string = 'http://localhost:8899/api/ticket';
+  // For adding new ticket
+  data: Object | undefined;
 
   itemsInCartSubject: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
 
-  constructor() {
+  constructor(private httpService: HttpClient) {
     this.itemsInCartSubject.subscribe((_) => (this.activities = _));
   }
 
@@ -22,6 +27,21 @@ export class CartService {
     } else {
       return {};
     }
+  }
+
+  RegisterNewTicket(body: Ticket): any {
+    const headers = {
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    };
+
+    this.httpService
+      .post<Ticket>(this.remoteurl, body, {
+        headers: headers,
+      })
+      .subscribe((data: Object | undefined) => {
+        this.data = data;
+      });
   }
 
   addToCartService(activity: Activity): boolean {

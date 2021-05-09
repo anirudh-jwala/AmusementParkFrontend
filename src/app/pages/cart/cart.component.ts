@@ -6,6 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Ticket } from 'src/app/models/ticket';
+import { Customer } from 'src/app/models/customer';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,8 +20,11 @@ export class CartComponent implements OnInit {
   shoppingCartItems: Activity[];
   displayedCartColumns: string[] = ['activity', 'details', 'price', 'action'];
   totalAmount: number = 0;
+  ticketData: Ticket;
+  customer: Customer;
 
   constructor(
+    private cusomterService: CustomerService,
     private cartService: CartService,
     private tokenService: TokenStorageService,
     private snakbarService: MatSnackBar,
@@ -35,12 +41,6 @@ export class CartComponent implements OnInit {
   }
 
   calculateCartPrice() {
-    // this.cartService.getActivities().forEach((actArr: Activity[]) => {
-    //   actArr.forEach((activity: Activity) => {
-    //     this.totalAmount += activity.charges;
-    //   });
-    // });
-
     this.shoppingCartItems.forEach((activity: Activity) => {
       this.totalAmount += activity.charges;
     });
@@ -64,21 +64,45 @@ export class CartComponent implements OnInit {
 
   orderNow() {
     if (this.tokenService.getToken()) {
-      this.snakbarService.open('Order placed', '', {
-        duration: 5000,
-      });
-
       // create a ticket
+      this.cusomterService
+        .GetCustomerById(this.tokenService.getUser().id)
+        .subscribe((c: Customer) => {
+          var myDate = new Date();
+          var myDateString;
 
-      this.cartService.clearCart();
+          myDate.setDate(myDate.getDate());
 
-      const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        width: '40%',
-      });
+          myDateString =
+            myDate.getFullYear() +
+            '-' +
+            ('0' + (myDate.getMonth() + 1)).slice(-2) +
+            '-' +
+            ('0' + myDate.getDate()).slice(-2);
 
-      dialogRef.afterClosed().subscribe((result) => {
-        this.router.navigateByUrl('/myorder');
-      });
+          this.ticketData = new Ticket(
+            this.totalAmount,
+            myDateString,
+            this.shoppingCartItems,
+            c
+          );
+
+          this.cartService.RegisterNewTicket(this.ticketData);
+
+          this.cartService.clearCart();
+
+          const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+            width: '40%',
+          });
+
+          dialogRef.afterClosed().subscribe((result) => {
+            this.router.navigateByUrl('/myorder');
+
+            this.snakbarService.open('Order placed successfully', '', {
+              duration: 5000,
+            });
+          });
+        });
     } else {
       this.router.navigateByUrl('/login');
     }

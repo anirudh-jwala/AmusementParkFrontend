@@ -5,11 +5,32 @@
 </div>
 
 <div class="container mt-4">
-  <h2 class="text-center mb-3">EXPERIENCE THE UNLIMITED FUN</h2>
-
   <div class="row">
+    <div class="col-md-10">
+      <h2 class="mb-3">EXPERIENCE THE UNLIMITED FUN</h2>
+    </div>
+    <div class="col-md-2">
+      <mat-form-field>
+        <mat-label>Search activity</mat-label>
+        <input
+          matInput
+          placeholder="Ex. Go Kart"
+          [(ngModel)]="activityToSearch"
+          (keyup)="performFilterOnActivity()"
+          (keydown)="performFilterOnActivity()"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <h5 class="text-center m-5" *ngIf="filteredActivities.length == 0">
+    No activities found
+  </h5>
+
+  <div class="row" *ngIf="filteredActivities.length != 0">
     <div class="col">
-      <div class="card shadow mb-4" *ngFor="let activity of activities">
+      <div class="card shadow mb-4" *ngFor="let activity of filteredActivities">
         <div class="row">
           <div class="col-md-5 col-xs-12 col-sm-12 col-lg-5">
             <img src="{{ activity.imageUrl }}" class="img img-fluid rounded" />
@@ -22,7 +43,15 @@
             <p>
               {{ activity.description }}
             </p>
-            <button mat-stroked-button color="primary">Know More</button>
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="
+                openKnowMoreDialog(activity.activityName, activity.description)
+              "
+            >
+              Know More
+            </button>
             &nbsp;&nbsp;
             <button
               mat-raised-button

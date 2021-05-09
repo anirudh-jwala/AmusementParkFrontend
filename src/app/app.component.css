@@ -1,8 +1,3 @@
-/* .mat-elevation-z8{
-  position: fixed;
-} */
-
-
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -28,7 +23,6 @@ ul.social-network li {
 }
 
 /* footer social icons */
-
 .social-network a.icoFacebook:hover {
   background-color: #3b5998;
 }
