@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-4">
           <mat-form-field class="float-right mt-1">
-            <mat-label>Search ticket id</mat-label>
+            <mat-label>Search ticket no</mat-label>
             <input
               matInput
               placeholder="Ex. 1000 (Min 4 chars)"
@@ -36,16 +36,30 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="activities">
+            <th mat-header-cell *matHeaderCellDef>Activity Name(s)</th>
+            <td mat-cell *matCellDef="let element">
+              <li
+                *ngFor="let actvitiy of element.activities"
+                style="list-style-type: decimal; padding: 12px"
+              >
+                {{ actvitiy.activityName | titlecase }}
+              </li>
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Date</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.date }}
+              {{ element.date | date }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="bill">
             <th mat-header-cell *matHeaderCellDef>Amount</th>
-            <td mat-cell *matCellDef="let element">₹ {{ element.bill }}/-</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.bill | currency: "INR" }} /-
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedTicketColumns"></tr>

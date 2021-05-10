@@ -11,7 +11,12 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./userorder.component.css'],
 })
 export class UserorderComponent implements OnInit {
-  displayedTicketColumns: string[] = ['ticket id', 'date', 'bill'];
+  displayedTicketColumns: string[] = [
+    'ticket id',
+    'activities',
+    'date',
+    'bill',
+  ];
 
   dataSourceTicket = new MatTableDataSource<Ticket>();
 
