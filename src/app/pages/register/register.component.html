@@ -8,9 +8,7 @@
         class="shadow p-5 mb-5 bg-white rounded text-center"
         *ngIf="!isSuccessful"
       >
-        <h2 class="mb-4" style="font-weight: 500">
-          Welcome to Amusement Park
-        </h2>
+        <h2 class="mb-4" style="font-weight: 500">Welcome to Amusement Park</h2>
         <form
           name="form"
           (ngSubmit)="f.form.valid && onSubmit()"
@@ -22,7 +20,7 @@
               <mat-label>Enter username</mat-label>
               <input
                 matInput
-                placeholder="amit"
+                placeholder="capg"
                 type="text"
                 name="username"
                 [(ngModel)]="form.username"
@@ -53,7 +51,7 @@
               <mat-label>Enter email</mat-label>
               <input
                 matInput
-                placeholder="example@gmail.com"
+                placeholder="example@capgemini.com"
                 type="email"
                 name="email"
                 [(ngModel)]="form.email"
@@ -75,7 +73,7 @@
               <mat-label>Enter password</mat-label>
               <input
                 matInput
-                placeholder="123456"
+                placeholder="Capgemini@123"
                 type="password"
                 name="password"
                 [(ngModel)]="form.password"
@@ -104,6 +102,7 @@
               <mat-label>Enter phone number</mat-label>
               <input
                 matInput
+                pattern="^((\\+91-?)|0)?[0-9]{10}$"
                 placeholder="999 999 9999"
                 type="tel"
                 name="mobileNumber"
@@ -123,6 +122,9 @@
                   </div>
                   <div *ngIf="mobileNumber.errors.minlength">
                     Mobile Number must be at least 10 characters
+                  </div>
+                  <div *ngIf="mobileNumber.errors.pattern">
+                    Mobile Number is not valid
                   </div>
                 </div></mat-hint
               >
