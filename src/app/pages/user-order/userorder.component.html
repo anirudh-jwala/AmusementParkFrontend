@@ -2,11 +2,23 @@
   <mat-tab-group mat-stretch-tabs>
     <!-- Ticket table -->
     <mat-tab label="Tickets">
-      <div class="row container">
-        <div class="col-8">
-          <h3>My Orders</h3>
+      <div class="row container mx-auto">
+        <div class="col-md-8">
+          <h3 class="mt-2">My Orders</h3>
         </div>
-        <div class="col-4"></div>
+        <div class="col-md-4">
+          <mat-form-field class="float-right mt-1">
+            <mat-label>Search ticket id</mat-label>
+            <input
+              matInput
+              placeholder="Ex. 1"
+              [(ngModel)]="ticketToSearch"
+              (keyup)="performFilterOnTickets()"
+              (keydown)="performFilterOnTickets()"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
       </div>
       <h6 class="text-center" *ngIf="dataSourceTicket.data.length == 0">
         No tickets are available

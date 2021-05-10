@@ -42,7 +42,7 @@ export class UserorderComponent implements OnInit {
     if (this.ticketToSearch) {
       this.filteredTickets = this.dataSourceTicket.data.filter(
         (ticket: Ticket) => {
-          return ticket.ticketId.toString(this.ticketToSearch);
+          return ticket.ticketId.toString() === this.ticketToSearch.toString();
         }
       );
 
