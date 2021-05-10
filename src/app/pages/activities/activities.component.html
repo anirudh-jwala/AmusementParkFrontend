@@ -40,9 +40,7 @@
               {{ activity.activityName }}
             </h4>
             <hr />
-            <p>
-              {{ activity.description }}
-            </p>
+            <p>{{ activity.description | slice: 0:200 }}...</p>
             <button
               mat-stroked-button
               color="primary"
