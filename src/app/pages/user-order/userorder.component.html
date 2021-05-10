@@ -20,22 +20,20 @@
           <ng-container matColumnDef="ticket id">
             <th mat-header-cell *matHeaderCellDef>No.</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.ticketId }}
+              T9821{{element.ticketId +1000}}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Date</th>
             <td mat-cell *matCellDef="let element">
-              <div class="col">
                 {{ element.date }}
-              </div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="bill">
             <th mat-header-cell *matHeaderCellDef>Amount</th>
-            <td mat-cell *matCellDef="let element">₹ {{ element.bill }}</td>
+            <td mat-cell *matCellDef="let element">₹ {{ element.bill }}/-</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedTicketColumns"></tr>

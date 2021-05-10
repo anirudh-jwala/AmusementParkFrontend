@@ -24,11 +24,11 @@
     </div>
   </div>
 
-  <h5 class="text-center m-5" *ngIf="filteredActivities.length == 0">
+  <h5 class="text-center m-5" *ngIf="filteredActivities?.length == 0">
     No activities found
   </h5>
 
-  <div class="row" *ngIf="filteredActivities.length != 0">
+  <div class="row" *ngIf="filteredActivities?.length != 0">
     <div class="col">
       <div class="card shadow mb-4" *ngFor="let activity of filteredActivities">
         <div class="row">
