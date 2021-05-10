@@ -15,7 +15,7 @@ export class UserDashboardComponent implements OnInit {
   fetchedCustomerName: string;
   fetchedCustomerEmail: string;
   customerFormData: Customer;
-  result:boolean;
+  result: boolean;
 
   constructor(
     private customerService: CustomerService,
@@ -50,11 +50,13 @@ export class UserDashboardComponent implements OnInit {
     console.log('Inside On update');
     this.result = confirm('Are you sure you want to update these Records?');
     if (this.result == true) {
-    this.customerService.update(this.customerFormData).subscribe((data) => {});
+      this.customerService
+        .update(this.customerFormData)
+        .subscribe((data) => {});
 
-    this.snakbarService.open('User updated', '', {
-      duration: 5000,
-    });
-  }
+      this.snakbarService.open('User updated', '', {
+        duration: 5000,
+      });
+    }
   }
 }

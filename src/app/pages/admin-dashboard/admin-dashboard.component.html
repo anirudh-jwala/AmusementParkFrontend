@@ -273,26 +273,36 @@
                   <mat-label>Search ID</mat-label>
                   <input
                     matInput
-                    placeholder="Ex. 1"
-                    [(ngModel)]="activityToSearch"
-                    (keyup)="performFilterOnActivities()"
-                    (keydown)="performFilterOnActivities()"
+                    placeholder="Ex. 1000 (Min 4 chars)"
+                    [(ngModel)]="ticketToSearch"
+                    (keyup)="performFilterOnTickets()"
+                    (keydown)="performFilterOnTickets()"
                   />
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
             </div>
           </div>
-          <table mat-table [dataSource]="dataSourceTicket">
+          <h6 class="text-center" *ngIf="dataSourceTicket.data.length == 0">
+            No tickets are available
+          </h6>
+
+          <table
+            mat-table
+            [dataSource]="dataSourceTicket"
+            *ngIf="dataSourceTicket.data.length != 0"
+          >
             <ng-container matColumnDef="ticket id">
-              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Ticker Id</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%">
+                Ticker Id
+              </th>
               <td mat-cell *matCellDef="let element">
                 {{ element.ticketId }}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Date</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%">Date</th>
               <td mat-cell *matCellDef="let element">
                 <div class="col">
                   {{ element.date | date }}
@@ -301,12 +311,16 @@
             </ng-container>
 
             <ng-container matColumnDef="bill">
-              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Amount</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%">
+                Amount
+              </th>
               <td mat-cell *matCellDef="let element">₹ {{ element.bill }}</td>
             </ng-container>
 
             <ng-container matColumnDef="activities">
-              <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Activity Name(s)</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%">
+                Activity Name(s)
+              </th>
               <td mat-cell *matCellDef="let element">
                 <li
                   *ngFor="let actvitiy of element.activities"

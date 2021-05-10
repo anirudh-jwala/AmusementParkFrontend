@@ -153,7 +153,7 @@ export class AdminDashboardComponent implements OnInit {
         (activity: Activity) => {
           return activity.activityName
             .toLocaleLowerCase()
-            .includes(this.activityToSearch);
+            .includes(this.activityToSearch.toLocaleLowerCase());
         }
       );
 
@@ -171,7 +171,7 @@ export class AdminDashboardComponent implements OnInit {
         (customer: Customer) => {
           return customer.username
             .toLocaleLowerCase()
-            .includes(this.customerToSearch);
+            .includes(this.customerToSearch.toLocaleLowerCase());
         }
       );
 
@@ -184,12 +184,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   performFilterOnTickets() {
-    if (this.ticketToSearch) {
+    if (this.ticketToSearch && this.ticketToSearch.length >= 4) {
       this.filteredTickets = this.dataSourceTicket.data.filter(
-        (ticket: Ticket) => {
-          return ticket.ticketId.toString()
-          .includes(this.ticketToSearch);
-        }
+        (ticket: Ticket) =>
+          ticket.ticketId.toString().toLocaleLowerCase() ==
+          this.ticketToSearch.toLocaleLowerCase()
       );
 
       this.dataSourceTicket = new MatTableDataSource<Ticket>(
