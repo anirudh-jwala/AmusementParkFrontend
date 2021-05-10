@@ -40,7 +40,7 @@ export class AppComponent {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    this.router.navigateByUrl('/').then(() => {
+    this.router.navigateByUrl('/login').then(() => {
       window.location.reload();
     });
   }
