@@ -54,7 +54,7 @@
               <input
                 matInput
                 placeholder="Capgemini@123"
-                type="password"
+                [type]="hidePass ? 'password' : 'text'"
                 name="password"
                 [(ngModel)]="form.password"
                 required
@@ -62,6 +62,16 @@
                 #password="ngModel"
                 pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$]).{8,32}$"
               />
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePassHidden()"
+              >
+                <mat-icon>{{
+                  hidePass ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
               <mat-icon matPrefix>lock_outline</mat-icon>
               <mat-hint>
                 <div

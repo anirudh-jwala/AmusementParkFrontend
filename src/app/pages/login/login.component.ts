@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  hidePass: boolean = true;
 
   constructor(
     private authService: AuthService,
@@ -47,6 +48,10 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
+  }
+
+  togglePassHidden() {
+    this.hidePass = !this.hidePass;
   }
 
   reloadPage(): void {

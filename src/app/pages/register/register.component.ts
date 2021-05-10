@@ -18,10 +18,15 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  hidePass: boolean = true;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  togglePassHidden() {
+    this.hidePass = !this.hidePass;
+  }
 
   onSubmit(): void {
     const { username, email, password, mobileNumber, address } = this.form;
