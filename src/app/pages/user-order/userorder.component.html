@@ -11,7 +11,7 @@
             <mat-label>Search ticket id</mat-label>
             <input
               matInput
-              placeholder="Ex. 1"
+              placeholder="Ex. 1000"
               [(ngModel)]="ticketToSearch"
               (keyup)="performFilterOnTickets()"
               (keydown)="performFilterOnTickets()"
@@ -32,14 +32,14 @@
           <ng-container matColumnDef="ticket id">
             <th mat-header-cell *matHeaderCellDef>No.</th>
             <td mat-cell *matCellDef="let element">
-              T9821{{element.ticketId +1000}}
+              {{ element.ticketId }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Date</th>
             <td mat-cell *matCellDef="let element">
-                {{ element.date }}
+              {{ element.date }}
             </td>
           </ng-container>
 

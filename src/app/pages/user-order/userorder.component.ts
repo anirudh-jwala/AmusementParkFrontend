@@ -17,7 +17,7 @@ export class UserorderComponent implements OnInit {
 
   @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
 
-  ticketToSearch: number;
+  ticketToSearch: string;
   filteredTickets: Ticket[];
 
   constructor(
@@ -39,11 +39,11 @@ export class UserorderComponent implements OnInit {
   }
 
   performFilterOnTickets() {
-    if (this.ticketToSearch) {
+    if (this.ticketToSearch && this.ticketToSearch.length == 4) {
       this.filteredTickets = this.dataSourceTicket.data.filter(
-        (ticket: Ticket) => {
-          return ticket.ticketId.toString() === this.ticketToSearch.toString();
-        }
+        (ticket: Ticket) =>
+          ticket.ticketId.toString().toLocaleLowerCase() ==
+          this.ticketToSearch.toLocaleLowerCase()
       );
 
       this.dataSourceTicket = new MatTableDataSource<Ticket>(
