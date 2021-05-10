@@ -39,8 +39,8 @@ td {
   padding: 8px 16px;
   background-image: linear-gradient(
     to right,
-    rgb(53, 48, 204),
-    rgb(188, 14, 173)
+    #538FFB,
+    #5B54FA
   );
   border-radius: 16px;
   color: white;
