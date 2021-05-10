@@ -34,7 +34,7 @@
             *ngIf="dataSourceCustomer.data.length != 0"
           >
             <ng-container matColumnDef="customer id">
-              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <th mat-header-cell *matHeaderCellDef>Customer Id</th>
               <td mat-cell *matCellDef="let element">
                 {{ element.customerId }}
               </td>
@@ -285,14 +285,14 @@
           </div>
           <table mat-table [dataSource]="dataSourceTicket">
             <ng-container matColumnDef="ticket id">
-              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Ticker Id</th>
               <td mat-cell *matCellDef="let element">
                 {{ element.ticketId }}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Date</th>
               <td mat-cell *matCellDef="let element">
                 <div class="col">
                   {{ element.date | date }}
@@ -301,12 +301,12 @@
             </ng-container>
 
             <ng-container matColumnDef="bill">
-              <th mat-header-cell *matHeaderCellDef>Amount</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%;">Amount</th>
               <td mat-cell *matCellDef="let element">₹ {{ element.bill }}</td>
             </ng-container>
 
             <ng-container matColumnDef="activities">
-              <th mat-header-cell *matHeaderCellDef>Activity Name(s)</th>
+              <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Activity Name(s)</th>
               <td mat-cell *matCellDef="let element">
                 <li
                   *ngFor="let actvitiy of element.activities"
