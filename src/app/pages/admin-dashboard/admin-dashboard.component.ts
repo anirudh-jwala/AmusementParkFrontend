@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Activity } from 'src/app/models/activity';
 import { Customer } from 'src/app/models/customer';
@@ -59,7 +60,8 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private activityService: ActivityService,
     private customerService: CustomerService,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private snackbarService: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -90,37 +92,67 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   registrationform = new FormGroup({
-    activityId: new FormControl(),
-    activityName: new FormControl(),
-    description: new FormControl(),
-    charges: new FormControl(),
-    imageUrl: new FormControl(),
-    chargeDetails: new FormControl(),
+    activityId: new FormControl(''),
+    activityName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
+    charges: new FormControl('', [Validators.required]),
+    imageUrl: new FormControl('', [Validators.required]),
+    chargeDetails: new FormControl('', [Validators.required]),
   });
 
   onSubmit() {
-    console.log('Activity Added Successfully....!');
-    alert('Activity Added Successfully.....!');
-    this.activityService.RegisterNewActivity(this.registrationform.value);
-    location.reload();
+    if (this.registrationform.status == 'VALID') {
+      this.activityService.RegisterNewActivity(this.registrationform.value);
+
+      this.snackbarService.open('Activity added successfully', '', {
+        duration: 5000,
+      });
+
+      window.location.reload();
+    } else {
+      this.snackbarService.open('Activity details are not valid', '', {
+        duration: 5000,
+      });
+    }
   }
 
   setClickedRow(id: number) {
-    this.result = confirm('Are you sure you want to delete these Records?');
+    this.result = confirm('Are you sure you want to delete?');
+
     if (this.result == true) {
       this.activityService.delete(id).subscribe((data: any) => {
         this.ngOnInit();
+
+        this.snackbarService.open('Activity delete', '', {
+          duration: 5000,
+        });
+      });
+    } else {
+      this.snackbarService.open('Activity was not deleted', '', {
+        duration: 5000,
       });
     }
   }
 
   activityupdateform = new FormGroup({
-    activityId: new FormControl(),
-    activityName: new FormControl(),
-    description: new FormControl(),
-    charges: new FormControl(),
-    imageUrl: new FormControl(),
-    chargeDetails: new FormControl(),
+    activityId: new FormControl(''),
+    activityName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
+    charges: new FormControl('', [Validators.required]),
+    imageUrl: new FormControl('', [Validators.required]),
+    chargeDetails: new FormControl('', [Validators.required]),
   });
 
   update(activity: any) {
@@ -135,16 +167,21 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   onUpdate() {
-    console.log('Activity edited Successfully....!');
-    alert('Customer edited Successfully.....!');
-    console.log(this.activityupdateform.value);
-    this.activityService
-      .update(this.activityupdateform.value)
-      .subscribe((data) => {
-        // this.ngOnInit();
+    if (this.activityupdateform.status == 'VALID') {
+      this.activityService
+        .update(this.activityupdateform.value)
+        .subscribe((data) => {});
+
+      this.snackbarService.open('Activity updated successfully', '', {
+        duration: 5000,
       });
 
-    location.reload();
+      window.location.reload();
+    } else {
+      this.snackbarService.open('Activity details are not valid', '', {
+        duration: 5000,
+      });
+    }
   }
 
   performFilterOnActivities() {

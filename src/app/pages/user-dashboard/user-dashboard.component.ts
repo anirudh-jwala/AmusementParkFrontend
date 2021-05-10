@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from 'src/app/models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -39,22 +39,25 @@ export class UserDashboardComponent implements OnInit {
   }
 
   customerupdateform = new FormGroup({
-    customerId: new FormControl(),
-    username: new FormControl(),
-    email: new FormControl(),
-    address: new FormControl(),
-    mobileNumber: new FormControl(),
+    customerId: new FormControl(''),
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    address: new FormControl('', [Validators.required]),
+    mobileNumber: new FormControl('', [Validators.required]),
   });
 
   onUpdate() {
-    console.log('Inside On update');
-    this.result = confirm('Are you sure you want to update these Records?');
+    this.result = confirm('Are you sure you want to update details?');
     if (this.result == true) {
       this.customerService
         .update(this.customerFormData)
         .subscribe((data) => {});
 
       this.snakbarService.open('User updated', '', {
+        duration: 5000,
+      });
+    } else {
+      this.snakbarService.open('User is not updated', '', {
         duration: 5000,
       });
     }

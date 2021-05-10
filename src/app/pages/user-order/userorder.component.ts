@@ -44,11 +44,9 @@ export class UserorderComponent implements OnInit {
   }
 
   performFilterOnTickets() {
-    if (this.ticketToSearch && this.ticketToSearch.length == 4) {
+    if (this.ticketToSearch && this.ticketToSearch.length >= 4) {
       this.filteredTickets = this.dataSourceTicket.data.filter(
-        (ticket: Ticket) =>
-          ticket.ticketId.toString().toLocaleLowerCase() ==
-          this.ticketToSearch.toLocaleLowerCase()
+        (ticket: Ticket) => ticket.ticketId === parseInt(this.ticketToSearch)
       );
 
       this.dataSourceTicket = new MatTableDataSource<Ticket>(
