@@ -43,11 +43,15 @@ export class ActivitiesComponent implements OnInit {
   }
 
   performFilterOnActivity() {
-    if (this.activityToSearch) {
+    if (this.activityToSearch && isNaN(parseInt(this.activityToSearch))) {
       this.filteredActivities = this.activities.filter((activity: Activity) => {
         return activity.activityName
           .toLocaleLowerCase()
-          .includes(this.activityToSearch);
+          .includes(this.activityToSearch.toLocaleLowerCase());
+      });
+    } else if (parseInt(this.activityToSearch)) {
+      this.filteredActivities = this.activities.filter((activity: Activity) => {
+        return activity.charges == parseInt(this.activityToSearch);
       });
     } else {
       this.loadAllActivities();
