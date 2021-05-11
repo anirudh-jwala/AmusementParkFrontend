@@ -72,6 +72,26 @@
               </td>
             </ng-container>
 
+            <ng-container matColumnDef="tickets">
+              <th mat-header-cell *matHeaderCellDef>Ticket Id(s)</th>
+              <td mat-cell *matCellDef="let element" style="width: 20%">
+                <p
+                  class="mt-2 py-2"
+                  *ngIf="element.tickets.length == 0"
+                >
+                  No Tickets are available
+                </p>
+                <ul
+                  class="mt-2 p-2"
+                  *ngIf="element.tickets.length > 0"
+                >
+                  <li *ngFor="let item of element.tickets">
+                    {{ item.ticketId }}
+                  </li>
+                </ul>
+              </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedCustomerColumns"></tr>
             <tr
               mat-row

@@ -23,6 +23,7 @@ export class AdminDashboardComponent implements OnInit {
     'email',
     'address',
     'mobile number',
+    'tickets',
   ];
   displayedActivityColumns: string[] = [
     'activity id',
