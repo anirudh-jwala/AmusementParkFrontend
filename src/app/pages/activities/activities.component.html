@@ -40,7 +40,19 @@
               {{ activity.activityName }}
             </h4>
             <hr />
-            <p>{{ activity.description | slice: 0:200 }}...</p>
+            <p>
+              {{ activity.description | slice: 0:200 }}...
+              <span
+                style="color: #3f51b5"
+                (click)="
+                  openKnowMoreDialog(
+                    activity.activityName,
+                    activity.description
+                  )
+                "
+                >[read more]</span
+              >
+            </p>
             <button
               mat-stroked-button
               color="primary"
