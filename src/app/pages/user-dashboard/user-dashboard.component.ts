@@ -42,20 +42,34 @@ export class UserDashboardComponent implements OnInit {
     customerId: new FormControl(''),
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    address: new FormControl('', [Validators.required]),
-    mobileNumber: new FormControl('', [Validators.required]),
+    address: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
+    mobileNumber: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
   });
 
   onUpdate() {
     this.result = confirm('Are you sure you want to update details?');
     if (this.result == true) {
-      this.customerService
-        .update(this.customerFormData)
-        .subscribe((data) => {});
+      if (this.customerupdateform.status == 'VALID') {
+        this.customerService
+          .update(this.customerFormData)
+          .subscribe((data) => {});
 
-      this.snakbarService.open('User updated', '', {
-        duration: 5000,
-      });
+        this.snakbarService.open('User updated', '', {
+          duration: 5000,
+        });
+      } else {
+        this.snakbarService.open('User details are not valid', '', {
+          duration: 5000,
+        });
+
+        this.ngOnInit();
+      }
     } else {
       this.snakbarService.open('User is not updated', '', {
         duration: 5000,
