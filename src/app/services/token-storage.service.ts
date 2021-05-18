@@ -36,4 +36,9 @@ export class TokenStorageService {
 
     return {};
   }
+
+  public getUserRole(): any {
+    let roles = JSON.parse(window.sessionStorage.getItem(USER_KEY));
+    return roles.roles;
+  }
 }

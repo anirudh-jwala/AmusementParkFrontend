@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { UserGuard } from './guards/user.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
@@ -22,12 +24,12 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserDashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, UserGuard],
   },
   {
     path: 'admin',
     component: AdminDashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'activities',
@@ -60,6 +62,7 @@ const routes: Routes = [
   {
     path: 'myorder',
     component: UserorderComponent,
+    canActivate: [AuthGuard, UserGuard],
   },
   {
     path: '**',
