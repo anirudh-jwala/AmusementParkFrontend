@@ -48,7 +48,7 @@ export class UserDashboardComponent implements OnInit {
     ]),
     mobileNumber: new FormControl('', [
       Validators.required,
-      Validators.minLength(10),
+      Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
     ]),
   });
 
