@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -20,7 +22,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private snackbarService: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +45,32 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+
+        if (this.roles.includes('ROLE_ADMIN')) {
+          this.router.navigateByUrl('/admin').then((redirect) => {
+            this.reloadPage();
+
+            this.snackbarService.open('Welcome to Admin Panel', '', {
+              duration: 5000,
+            });
+          });
+        } else {
+          this.router.navigateByUrl('/').then((redirect) => {
+            this.reloadPage();
+
+            this.snackbarService.open('Login Successful', '', {
+              duration: 5000,
+            });
+          });
+        }
       },
       (err) => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+
+        this.snackbarService.open('Login Failed', '', {
+          duration: 5000,
+        });
       }
     );
   }

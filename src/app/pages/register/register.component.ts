@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -20,7 +22,11 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   hidePass: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbarService: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
@@ -38,10 +44,20 @@ export class RegisterComponent implements OnInit {
           console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+
+          this.router.navigateByUrl('/login').then((redirect) => {
+            this.snackbarService.open('Registered Successfully', '', {
+              duration: 5000,
+            });
+          });
         },
         (err) => {
           this.errorMessage = err.error.message;
           this.isSignUpFailed = true;
+
+          this.snackbarService.open('Registration Failed', '', {
+            duration: 5000,
+          });
         }
       );
   }

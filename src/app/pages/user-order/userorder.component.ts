@@ -20,7 +20,7 @@ export class UserorderComponent implements OnInit {
 
   dataSourceTicket = new MatTableDataSource<Ticket>();
 
-  @ViewChild('MatPaginator3') ticketPaginator: MatPaginator;
+  // @ViewChild('MatPaginator') ticketPaginator: MatPaginator;
 
   ticketToSearch: string;
   filteredTickets: Ticket[];
@@ -39,7 +39,7 @@ export class UserorderComponent implements OnInit {
       .GetTicketsByCustomerId(this.tokenService.getUser().id)
       .subscribe((data: any) => {
         this.dataSourceTicket = new MatTableDataSource<Ticket>(data);
-        this.dataSourceTicket.paginator = this.ticketPaginator;
+        // this.dataSourceTicket.paginator = this.ticketPaginator;
       });
   }
 
